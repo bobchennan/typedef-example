@@ -1,0 +1,24 @@
+package typedef.syntactic;
+
+terminal TYPEDEF, LBRACE, RBRACE, SEMI;
+terminal String ID, TYPEID;
+
+non terminal program, block, stmts, stmt;
+
+start with program;
+
+program ::= stmts
+          ;
+
+stmts ::= /* empty */
+        | stmt stmts
+        ;
+
+block ::= LBRACE {: ParserTest.beginScope(); :} stmts RBRACE {: ParserTest.endScope(); :}
+        ;
+
+stmt ::= block
+       | TYPEDEF ID ID:x {: ParserTest.addTypeId(x);         :} SEMI
+       | ID:x            {: System.out.println("id " + x);   :} SEMI
+       | TYPEID:x        {: System.out.println("type " + x); :} SEMI
+       ;

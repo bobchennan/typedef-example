@@ -1,0 +1,15 @@
+a;
+b;
+
+typedef int a;
+a;
+b;
+
+{
+  typedef int b;
+  a;
+  b;
+}
+
+a;
+b;
